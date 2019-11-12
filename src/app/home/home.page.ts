@@ -52,12 +52,12 @@ export class HomePage {
 
   }
 
-  selecRider(RiderSelec) {
+  selecRider(riderSelec) {
     console.log("Rider seleccionado: ");
-    console.log(RiderSelec);
-    this.idRiderSelec = RiderSelec.id;
-    this.ridersEditando.nombre = RiderSelec.data.titulo;
-    this.ridersEditando.modeloBicicleta = RiderSelec.data.descripcion;
+    console.log(riderSelec);
+    this.idRiderSelec = riderSelec.id;
+    this.ridersEditando.nombre = riderSelec.data.nombre;
+    this.ridersEditando.modeloBicicleta = riderSelec.data.modeloBicicleta;
   }
 
   clicBotonBorrar() {

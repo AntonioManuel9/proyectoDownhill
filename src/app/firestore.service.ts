@@ -23,15 +23,15 @@ export class FirestoreService {
 
   }
 
-  public borrar (coleccion, documentoId) {
+  public borrar (coleccion, documentId) {
 
-    return this.angularFirestore.collection(coleccion).doc(documentoId).delete();
+    return this.angularFirestore.collection(coleccion).doc(documentId).delete();
 
   }
 
-  public actualizar(coleccion, documentoId, datos) {
+  public actualizar(coleccion, documentId, datos) {
 
-    return this.angularFirestore.collection(coleccion).doc(documentoId).set(datos);
+    return this.angularFirestore.collection(coleccion).doc(documentId).set(datos);
 
    }
 }
