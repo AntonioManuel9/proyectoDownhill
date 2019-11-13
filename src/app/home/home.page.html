@@ -17,10 +17,10 @@
   </ion-item>
   <ion-button (click)="clicBotonInsertar()">Añadir rider</ion-button>
   <ion-button (click)="clicBotonBorrar()">Borrar rider</ion-button>
-  <ion-button (click)="clicBotonModificar()" (click)="selecRider(documentRiders)">Modificar rider</ion-button>
+  <ion-button (click)="clicBotonModificar()">Modificar rider</ion-button>
   <h1>LISTA DE RIDERS</h1>
   <ion-list>
-    <ion-item *ngFor="let documentRiders of arrayColeccionRiders" (click)="selecRider(documentRiders)">
+    <ion-item *ngFor="let documentRiders of arrayColeccionRiders" (click)="navigateToRiders(idRiderSelec, riderSelec)">
       <ion-grid>
         <ion-row>
           <h2>Nombre: {{documentRiders.data.nombre}}</h2>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FirestoreService } from '../firestore.service';
 import { Riders } from '../riders';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ export class HomePage {
 
   idRiderSelec: string;
 
-  constructor(private firestoreService: FirestoreService) {
+  constructor(private firestoreService: FirestoreService, private router: Router) {
 
     // Crear una tarea vacía
     this.ridersEditando = {} as Riders;
@@ -78,6 +79,11 @@ export class HomePage {
       // Limpiar datos de pantalla
       this.ridersEditando = {} as Riders;
     })
+  }
+
+  navigateToRiders(idRiderSelec, riderSelec) {
+    this.idRiderSelec = riderSelec.id;
+    this.router.navigate(["/riders/id"] + idRiderSelec);
   }
 
 }
