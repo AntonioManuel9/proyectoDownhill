@@ -81,9 +81,8 @@ export class HomePage {
     })
   }
 
-  navigateToRiders(idRiderSelec, riderSelec) {
-    this.idRiderSelec = riderSelec.id;
-    this.router.navigate(["/riders/id"] + idRiderSelec);
+  navigateToRiders(arrayColeccionRiders) {
+    this.router.navigate(["/riders/"] + arrayColeccionRiders.id);
   }
 
 }
