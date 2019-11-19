@@ -20,7 +20,7 @@
   <ion-button (click)="clicBotonModificar()">Modificar rider</ion-button>
   <h1>LISTA DE RIDERS</h1>
   <ion-list>
-    <ion-item *ngFor="let documentRiders of arrayColeccionRiders" (click)="navigateToRiders(riderSelec)">
+    <ion-item *ngFor="let documentRiders of arrayColeccionRiders" (click)="navigateToRiders(documentRiders)">
       <ion-grid>
         <ion-row>
           <h2>Nombre: {{documentRiders.data.nombre}}</h2>
