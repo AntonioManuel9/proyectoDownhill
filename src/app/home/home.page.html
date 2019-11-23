@@ -7,17 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-label>Nombre:</ion-label>
-    <ion-input [(ngModel)]="ridersEditando.nombre"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>Modelo de bicicleta:</ion-label>
-    <ion-input [(ngModel)]="ridersEditando.modeloBicicleta"></ion-input>
-  </ion-item>
   <ion-button (click)="clicBotonInsertar()">Añadir rider</ion-button>
-  <ion-button (click)="clicBotonBorrar()">Borrar rider</ion-button>
-  <ion-button (click)="clicBotonModificar()">Modificar rider</ion-button>
   <h1>LISTA DE RIDERS</h1>
   <ion-list>
     <ion-item *ngFor="let documentRiders of arrayColeccionRiders" (click)="navigateToRiders(documentRiders)">

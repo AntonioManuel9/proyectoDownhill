@@ -7,6 +7,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  My ID is: {{ id }}
+<ion-content> 
+  <ion-item>
+      El ID del rider seleccionado es : {{ id }}
+    </ion-item>
+    <ion-item>
+      <ion-label><strong>Nombre: </strong></ion-label>
+      <ion-input [(ngModel)]="document.data.nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><strong>Modelo de la bicicleta: </strong></ion-label>
+      <ion-input [(ngModel)]="document.data.modBicicleta"></ion-input>
+    </ion-item>
+<ion-button (click)="clicBotonBorrar()">Borrar rider</ion-button>
+<ion-button (click)="clicBotonModificar()">Modificar rider</ion-button>
 </ion-content>
