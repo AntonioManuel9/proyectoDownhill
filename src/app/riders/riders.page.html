@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Riders</ion-title>
+    <ion-title>Detalle Rider</ion-title>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content> 
-  <ion-item>
-      El ID del rider seleccionado es : {{ id }}
+    <ion-item>
+      <ion-label><strong>Id: </strong>{{ id }}</ion-label>
     </ion-item>
     <ion-item>
       <ion-label><strong>Nombre: </strong></ion-label>
@@ -17,7 +17,19 @@
     </ion-item>
     <ion-item>
       <ion-label><strong>Modelo de la bicicleta: </strong></ion-label>
-      <ion-input [(ngModel)]="document.data.modBicicleta"></ion-input>
+      <ion-input [(ngModel)]="document.data.modeloBicicleta"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><strong>Ciudad de nacimiento: </strong></ion-label>
+      <ion-input [(ngModel)]="document.data.ciudadNacimiento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><strong>Nickname: </strong></ion-label>
+      <ion-input [(ngModel)]="document.data.nickname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><strong>Fecha de nacimiento: </strong></ion-label>
+      <ion-input [(ngModel)]="document.data.fechaNacimiento"></ion-input>
     </ion-item>
 <ion-button (click)="clicBotonBorrar()">Borrar rider</ion-button>
 <ion-button (click)="clicBotonModificar()">Modificar rider</ion-button>
