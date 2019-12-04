@@ -15,6 +15,7 @@ export class RidersPage implements OnInit {
     data: {} as Riders
   };
 
+  ridersEditando: Riders;
   id = null;
 
   constructor(private firestoreService: FirestoreService, private activatedRoute: ActivatedRoute) { }
@@ -33,6 +34,15 @@ export class RidersPage implements OnInit {
         this.document.data = {} as Riders;
       } 
     });
+  }
+
+  clicBotonBorrar() {
+
+    this.firestoreService.borrar("riders", this.id).then(() => {
+      // Limpiar datos de pantalla
+      this.ridersEditando = {} as Riders;
+    })
+
   }
 
 
