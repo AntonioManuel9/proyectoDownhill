@@ -2,14 +2,15 @@
   <ion-toolbar>
     <ion-title>Detalle Rider</ion-title>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+			<ion-button *ngIf="id == 'new'" (click)="confirmacionInsertar()"><ion-icon name="arrow-round-back"></ion-icon></ion-button>
+			<ion-button *ngIf="id != 'new'" (click)="confirmacionModificar()"><ion-icon name="arrow-round-back"></ion-icon></ion-button>
+		</ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content> 
     <ion-item>
-      <ion-label><strong>Id: </strong>{{ id }}</ion-label>
+      <ion-text><strong>Id: </strong>{{ id }}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label><strong>Nombre: </strong></ion-label>
