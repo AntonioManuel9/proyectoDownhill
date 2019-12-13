@@ -63,6 +63,18 @@ export class RidersPage implements OnInit {
 
 	}
 
+	navigateToImagenes() {
+		this.router.navigate(["/imagenes/"]);
+	  }
+	
+	navigateToInfoEvent() {
+		this.router.navigate(["/info-event/"]);
+	}
+
+	navigateToPatrocinadores() {
+		this.router.navigate(["/patrocinadores/"]);
+	}
+
   clicBotonBorrar() {
 
     this.firestoreService.borrar("riders", this.id).then(() => {
@@ -72,7 +84,7 @@ export class RidersPage implements OnInit {
 
   }
 
-  async confirmacionInsertar() {
+  async alertaInsertar() {
 		const alert = await this.alertController.create({
 			header: 'Confirmar',
 			message: '¿Crear el rider <strong>'+ this.document.data.nombre +'</strong>?',
@@ -106,7 +118,7 @@ export class RidersPage implements OnInit {
 		await alert.present();
 	}
 
-	async confirmacionModificar() {
+	async alertaModificar() {
 		const alert = await this.alertController.create({
 			header: 'Confirmar',
 			message: '¿Guardar cambios en el rider <strong>'+ this.document.data.nombre +'</strong>?',
@@ -132,6 +144,42 @@ export class RidersPage implements OnInit {
 					handler: () => {
 						console.log('Confirm Okay');
 						this.clicBotonModificar();
+						this.navigateToInicio();
+					}
+				}
+			]
+		});
+
+		await alert.present();
+	}
+
+	async alertaBorrar() {
+		const alert = await this.alertController.create({
+			header: 'Confirmar',
+			message: '¿Quieres borrar el rider <strong>'+ this.document.data.nombre +'</strong>?',
+			buttons: [
+				{
+					text: 'Descartar',
+					cssClass: 'secondary',
+					handler: (blah) => {
+						console.log('Confirm Cancel');
+						this.navigateToInicio();
+					}
+				},
+				{
+					text: 'Cancelar',
+					role: 'cancel',
+					cssClass: 'secondary',
+					handler: (blah) => {
+						console.log('Confirm Cancel');
+					}
+				},
+				{
+					text: 'Borrar',
+					handler: () => {
+						console.log('Confirm Okay');
+						this.clicBotonBorrar();
+						this.navigateToInicio();
 					}
 				}
 			]

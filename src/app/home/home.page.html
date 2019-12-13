@@ -1,21 +1,21 @@
-<ion-header>
+<ion-header class="cabecera">
   <ion-toolbar>
-    <ion-title>
+    <ion-title id="colorTexto">
       Proyecto Downhill
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <h1>LISTA DE RIDERS</h1>
+  <h1><ion-icon ios="md-contact" md="md-contact"></ion-icon>&nbsp;LISTA DE RIDERS</h1>
   <ion-list>
-    <ion-item *ngFor="let documentRiders of arrayColeccionRiders" (click)="navigateToRiders(documentRiders)">
+    <ion-item *ngFor="let documentRiders of arrayColeccionRiders" (click)="navigateToRiders(documentRiders.id)">
       <ion-grid>
         <ion-row>
-          <h2>Nombre: {{documentRiders.data.nombre}}</h2>
+          <h3><ion-icon ios="ios-body" md="md-body"></ion-icon>&nbsp;Nombre: {{documentRiders.data.nombre}}</h3>
         </ion-row>
         <ion-row>
-          <p><i>Modelo de la bicicleta: {{documentRiders.data.modeloBicicleta}}</i></p>
+          <h3><ion-icon ios="md-bicycle" md="md-bicycle" class="icon"></ion-icon>&nbsp;Modelo de la bicicleta:<i>{{documentRiders.data.modeloBicicleta}}</i></h3>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -26,3 +26,23 @@
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+
+<ion-footer class="footer" id="orientacion">
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="navigateToImagenes()" class="button-footer">
+        <ion-icon ios="ios-albums" md="md-albums" class="iconos"></ion-icon>
+        <label class="texto-boton" class="textoFooter">Imágenes</label>
+      </ion-button>
+      <ion-button (click)="navigateToInfoEvent()" class="button-footer">
+        <ion-icon ios="md-calendar" md="md-calendar" class="iconos"></ion-icon>
+        <label class="texto-boton" class="textoFooter">Info eventos</label>
+      </ion-button>
+      <ion-button (click)="navigateToPatrocinadores()" class="button-footer">
+        <ion-icon ios="ios-people" md="ios-people" class="iconos"></ion-icon>
+        <label class="texto-boton" class="textoFooter">Patrocinadores</label>
+      </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

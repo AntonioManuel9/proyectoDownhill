@@ -1,0 +1,31 @@
+<ion-header class="cabecera">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="navigateToInicio()"></ion-back-button>
+    </ion-buttons>
+    <ion-title id="colorTexto">Patrocinadores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3>Esta es la página de patrocinadores</h3>
+</ion-content>
+<ion-footer class="footer">
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="navigateToImagenes()" class="button-footer">
+        <ion-icon ios="ios-albums" md="md-albums" class="iconos"></ion-icon>
+        <label class="texto-boton" class="textoFooter">Imágenes</label>
+      </ion-button>
+      <ion-button (click)="navigateToInfoEvent()" class="button-footer">
+        <ion-icon ios="md-calendar" md="md-calendar" class="iconos"></ion-icon>
+        <label class="texto-boton" class="textoFooter">Info eventos</label>
+      </ion-button>
+      <ion-button (click)="navigateToPatrocinadores()" class="button-footer">
+        <ion-icon ios="ios-people" md="ios-people" class="iconos"></ion-icon>
+        <label class="texto-boton" class="textoFooter">Patrocinadores</label>
+      </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

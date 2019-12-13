@@ -81,8 +81,20 @@ export class HomePage {
     })
   }
 
-  navigateToRiders(riderSelec) {
-    this.router.navigate(["/riders/" + riderSelec.id]);
+  navigateToRiders(id) {
+    this.router.navigate(["/riders/" + id]);
+  }
+
+  navigateToImagenes() {
+    this.router.navigate(["/imagenes/"]);
+  }
+
+  navigateToInfoEvent() {
+    this.router.navigate(["/info-event/"]);
+  }
+
+  navigateToPatrocinadores() {
+    this.router.navigate(["/patrocinadores/"]);
   }
 
 }

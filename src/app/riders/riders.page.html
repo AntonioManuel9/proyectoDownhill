@@ -1,10 +1,9 @@
-<ion-header>
+<ion-header class="cabecera">
   <ion-toolbar>
-    <ion-title>Detalle Rider</ion-title>
+    <ion-title id="colorTexto">Detalle Rider</ion-title>
     <ion-buttons slot="start">
-			<ion-button *ngIf="id == 'new'" (click)="confirmacionInsertar()"><ion-icon name="arrow-round-back"></ion-icon></ion-button>
-			<ion-button *ngIf="id != 'new'" (click)="confirmacionModificar()"><ion-icon name="arrow-round-back"></ion-icon></ion-button>
-		</ion-buttons>
+      <ion-back-button (click)="navigateToInicio()"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -32,6 +31,26 @@
       <ion-label><strong>Fecha de nacimiento: </strong></ion-label>
       <ion-input [(ngModel)]="document.data.fechaNacimiento"></ion-input>
     </ion-item>
-<ion-button (click)="clicBotonBorrar()">Borrar rider</ion-button>
-<ion-button (click)="clicBotonModificar()">Modificar rider</ion-button>
+<ion-button (click)="alertaBorrar()"><ion-icon name="trash" size="large"></ion-icon></ion-button>
+<ion-button *ngIf="id == 'new'" (click)="alertaInsertar()"><ion-icon name="save" size="large"></ion-icon></ion-button>
+<ion-button *ngIf="id != 'new'" (click)="alertaModificar()"><ion-icon name="save" size="large"></ion-icon></ion-button>
 </ion-content>
+<ion-footer class="footer">
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="navigateToImagenes()" class="button-footer">
+        <ion-icon ios="ios-albums" md="md-albums" class="iconos"></ion-icon>
+        <label class="texto-boton" class="textoFooter">Imágenes</label>
+      </ion-button>
+      <ion-button (click)="navigateToInfoEvent()" class="button-footer">
+        <ion-icon ios="md-calendar" md="md-calendar" class="iconos"></ion-icon>
+        <label class="texto-boton" class="textoFooter">Info eventos</label>
+      </ion-button>
+      <ion-button (click)="navigateToPatrocinadores()" class="button-footer">
+        <ion-icon ios="ios-people" md="ios-people" class="iconos"></ion-icon>
+        <label class="texto-boton" class="textoFooter">Patrocinadores</label>
+      </ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
