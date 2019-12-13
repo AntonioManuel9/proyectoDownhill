@@ -10,3 +10,10 @@
     color: white;
 }
 
+@media (orientation: portrait){
+    #orientacion {
+        height: 0;
+        visibility: collapse;
+    }
+}
+
