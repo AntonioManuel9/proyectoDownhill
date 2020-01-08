@@ -3,7 +3,9 @@ import { ActivatedRoute } from "@angular/router";
 import { Router } from "@angular/router";
 import { FirestoreService } from '../firestore.service';
 import { Riders } from '../riders';
-import { AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/ angular';
+import { LoadingController, ToastController } from '@ionic/angular';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 @Component({
   selector: 'app-riders',
@@ -23,7 +25,10 @@ export class RidersPage implements OnInit {
   constructor(private firestoreService: FirestoreService, 
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    public alertController: AlertController) { }
+	public alertController: AlertController,
+	private loadingController: LoadingController,
+	private toastController: ToastController,
+	private imagePicker: ImagePicker) { }
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get("id");
