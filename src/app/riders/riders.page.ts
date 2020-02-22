@@ -6,6 +6,7 @@ import { Riders } from '../riders';
 import { AlertController } from '@ionic/angular';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-riders',
@@ -28,22 +29,25 @@ export class RidersPage implements OnInit {
 	public alertController: AlertController,
 	private loadingController: LoadingController,
 	private toastController: ToastController,
-	private imagePicker: ImagePicker) { }
+	private imagePicker: ImagePicker,
+	private socialSharing: SocialSharing) { 
+		this.id = this.activatedRoute.snapshot.paramMap.get("id");
+    	this.firestoreService.consultarPorId("riders", this.id).subscribe((resultado) => {
+			// Preguntar si se hay encontrado un document con ese ID
+			if(resultado.payload.data() != null) {
+				this.document.id = resultado.payload.id
+				this.document.data = resultado.payload.data();
+				// Como ejemplo, mostrar el título de la tarea en consola
+				console.log(this.document.data.nombre);
+			} else {
+				// No se ha encontrado un document con ese ID. Vaciar los datos que hubiera
+				this.document.data = {} as Riders;
+			} 
+		});
+	}
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.paramMap.get("id");
-    this.firestoreService.consultarPorId("riders", this.id).subscribe((resultado) => {
-      // Preguntar si se hay encontrado un document con ese ID
-      if(resultado.payload.data() != null) {
-        this.document.id = resultado.payload.id
-        this.document.data = resultado.payload.data();
-        // Como ejemplo, mostrar el título de la tarea en consola
-        console.log(this.document.data.nombre);
-      } else {
-        // No se ha encontrado un document con ese ID. Vaciar los datos que hubiera
-        this.document.data = {} as Riders;
-      } 
-    });
+    
   }
 
   clicBotonInsertar() {
@@ -196,60 +200,61 @@ export class RidersPage implements OnInit {
 	async uploadImagePicker() {
 		// Mensaje de espera mientras se sube la imagen
 		const loading = await this.loadingController.create({
-		  message: 'Please wait...'
+			message: 'Please wait...'
 		});
 		// Mensaje de finalización de subida de la imagen
 		const toast = await this.toastController.create({
-		  message: 'Image was updated successfully',
-		  duration: 3000
+			message: 'Image was updated successfully',
+			duration: 3000
 		});
 		// Comprobar si la aplicación tiene permisos de lectura
 		this.imagePicker.hasReadPermission().then(
-		  (result) => {
-			// Si no tiene permiso de lectura se solicita al usuario
-			if(result == false){
-			  this.imagePicker.requestReadPermission();
-			}
-			else {
-			  // Abrir selector de imágenes (ImagePicker)
-			  this.imagePicker.getPictures({
-				maximumImagesCount: 1,  // Permitir sólo 1 imagen
-				outputType: 1           // 1 = Base64
-			  }).then(
-				(results) => {  // En la variable results se tienen las imágenes seleccionadas
-				  // Carpeta del Storage donde se almacenará la imagen
-				  let nombreCarpeta = "imagenes";
-				  // Recorrer todas las imágenes que haya seleccionado el usuario
-				  //  aunque realmente sólo será 1 como se ha indicado en las opciones
-				  for (var i = 0; i < results.length; i++) {      
-					// Mostrar el mensaje de espera
-					loading.present();
-					// Asignar el nombre de la imagen en función de la hora actual para
-					//  evitar duplicidades de nombres        
-					let nombreImagen = `${new Date().getTime()}`;
-					// Llamar al método que sube la imagen al Storage
-					this.firestoreService.uploadImage(nombreCarpeta, nombreImagen, results[i])
-					  .then(snapshot => {
-						snapshot.ref.getDownloadURL()
-						  .then(downloadURL => {
-							// En la variable downloadURL se tiene la dirección de descarga de la imagen
-							console.log("downloadURL:" + downloadURL);
-							// Mostrar el mensaje de finalización de la subida
-							toast.present();
-							// Ocultar mensaje de espera
-							loading.dismiss();
-						  })
-					  })
-				  }
-				},
-				(err) => {
-				  console.log(err)
+			(result) => {
+				// Si no tiene permiso de lectura se solicita al usuario
+				if (result == false) {
+					this.imagePicker.requestReadPermission();
 				}
-			  );
-			}
-		  }, (err) => {
-			console.log(err);
-		  });
+				else {
+					// Abrir selector de imágenes (ImagePicker)
+					this.imagePicker.getPictures({
+						maximumImagesCount: 1,  // Permitir sólo 1 imagen
+						outputType: 1           // 1 = Base64
+					}).then(
+						(results) => {  // En la variable results se tienen las imágenes seleccionadas
+							// Carpeta del Storage donde se almacenará la imagen
+							let nombreCarpeta = "imagenes";
+							// Recorrer todas las imágenes que haya seleccionado el usuario
+							//  aunque realmente sólo será 1 como se ha indicado en las opciones
+							for (var i = 0; i < results.length; i++) {
+								// Mostrar el mensaje de espera
+								loading.present();
+								// Asignar el nombre de la imagen en función de la hora actual para
+								//  evitar duplicidades de nombres        
+								let nombreImagen = `${new Date().getTime()}`;
+								// Llamar al método que sube la imagen al Storage
+								this.firestoreService.uploadImage(nombreCarpeta, nombreImagen, results[i])
+									.then(snapshot => {
+										snapshot.ref.getDownloadURL()
+											.then(downloadURL => {
+												// En la variable downloadURL se tiene la dirección de descarga de la imagen
+												console.log("downloadURL:" + downloadURL);
+												this.document.data.foto = downloadURL;
+												// Mostrar el mensaje de finalización de la subida
+												toast.present();
+												// Ocultar mensaje de espera
+												loading.dismiss();
+											})
+									})
+							}
+						},
+						(err) => {
+							console.log(err)
+						}
+					);
+				}
+			}, (err) => {
+				console.log(err);
+			});
 	}
 	 
 	async deleteFile(fileURL) {
@@ -263,6 +268,47 @@ export class RidersPage implements OnInit {
 		}, (err) => {
 			console.log(err);
 		});
+	}
+
+	componerMsg(){
+		let fechaHora = new Date(this.document.data.fechaHora);
+
+		let horaInicial = new Date(fechaHora.getTime());
+		let horaFinal = new Date(fechaHora.getTime() + this.document.data.duracion*60000);
+		
+		let fechaStr =  fechaHora.toLocaleDateString("es-ES");
+		let horaIncialStr = horaInicial.toLocaleTimeString("es-ES",{hour: '2-digit', minute: '2-digit'});
+		let horaFinalStr = horaFinal.toLocaleTimeString("es-ES",{hour: '2-digit', minute: '2-digit'});
+		
+
+		var msg = 'Evento: ' + this.document.data.nombre + ' por ' + this.document.data.ponente + '\n'
+		+ 'En el día ' + fechaStr  + ' a las ' + horaIncialStr + ' hasta las ' + horaFinalStr + ' en ' + this.document.data.direccion;
+		return msg;
+
+	}
+
+	regularShare(){
+		
+		let msg = this.componerMsg();
+		// console.log(msg);
+
+		this.socialSharing.share(msg, null, null, null);
+	}
+
+	twitterShare(){
+		
+		let msg = this.componerMsg();
+		// console.log(msg);
+
+		this.socialSharing.shareViaTwitter(msg, null, null);
+	}
+
+	whatsappShare(){
+		
+		let msg = this.componerMsg();
+		// console.log(msg);
+
+		this.socialSharing.shareViaWhatsApp(msg, null, null);
 	}
 	 
 }

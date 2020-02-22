@@ -4,10 +4,6 @@
     color: black;
 }
 
-.footer{
-    --ion-background-color: #cfd8dc;
-}
-
 .cabecera{
     --ion-background-color: #0d47a1;
 }
@@ -16,9 +12,19 @@
     color: white;
 }
 
-@media (orientation: portrait){
-    #orientacion {
-        height: 0;
-        visibility: collapse;
+.button-footer {
+    margin: auto;
+}
+
+@media (orientation: landscape) {
+    .footer {
+        justify-content: center;
+        --ion-background-color: #cfd8dc;
+    }
+}
+
+@media (orientation: portrait) {
+    .button-footer {
+        font-size: 0;
     }
 }

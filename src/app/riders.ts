@@ -4,4 +4,5 @@ export interface Riders {
     ciudadNacimiento: string;
     nickname: string;
     fechaNacimiento: number;
+    foto: string;
 }

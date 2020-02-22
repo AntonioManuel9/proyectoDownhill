@@ -3,12 +3,17 @@ import { FirestoreService } from '../firestore.service';
 import { Riders } from '../riders';
 import { Router } from "@angular/router";
 
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage {
+
+  quotes: any;
 
   ridersEditando: Riders;
   
@@ -19,7 +24,9 @@ export class HomePage {
 
   idRiderSelec: string;
 
-  constructor(private firestoreService: FirestoreService, private router: Router) {
+  private  apiUrl :string = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=10"; 
+
+  constructor(private firestoreService: FirestoreService, private router: Router,  private socialSharing: SocialSharing) {
 
     // Crear una tarea vacía
     this.ridersEditando = {} as Riders;
