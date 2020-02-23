@@ -8,6 +8,10 @@ const routes: Routes = [
   { path: 'imagenes', loadChildren: './imagenes/imagenes.module#ImagenesPageModule' },
   { path: 'info-event', loadChildren: './info-event/info-event.module#InfoEventPageModule' },
   { path: 'patrocinadores', loadChildren: './patrocinadores/patrocinadores.module#PatrocinadoresPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
 ];
 
 @NgModule({
