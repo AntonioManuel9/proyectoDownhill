@@ -34,6 +34,7 @@
     "core-js": "^2.5.4",
     "es6-promise-plugin": "^4.2.2",
     "firebase": "^7.2.3",
+    "leaflet": "^1.6.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

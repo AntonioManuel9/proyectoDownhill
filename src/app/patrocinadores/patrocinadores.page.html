@@ -11,6 +11,24 @@
   <h3>Esta es la página de patrocinadores</h3>
   <p>Información de contacto:</p>
   <p class="ion-margin-start ion-margin-end" (click)="llamar()">Numero de contacto: 987654321</p>
+  <p class="ion-margin-start ion-margin-end">Localización:</p>
+</ion-content>
+<ion-content>
+  <div id="mapId" style="height:200px"></div>
+  <ion-item style="cursor: pointer" (click)="locatePosition()">
+    <ion-button fill="clear">
+      <ion-icon slot="start" name="map"></ion-icon>
+      Locate Position
+    </ion-button>
+  </ion-item>
+  <ion-item>
+    <ion-icon slot="start" name="locate"></ion-icon>
+    <ion-label position="stacked">Address</ion-label>
+    <ion-textarea [(ngModel)]="address" type="text" style="margin-top:20px;">
+    </ion-textarea>
+  </ion-item>
+  <ion-button shape="round" expand="block" (click)="confirmPickupLocation()">
+    Confirm Pickup Location</ion-button>
 </ion-content>
 <ion-footer class="footer">
   <ion-toolbar>
