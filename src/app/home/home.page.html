@@ -3,7 +3,7 @@
     <ion-title id="colorTexto">
       Proyecto Downhill
     </ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" style="color: white;">
       <ion-button title="Cerrar sesión" *ngIf="userUID !== ''" (click)="logout()"><ion-icon name="log-out"></ion-icon></ion-button>
       <ion-button title="Iniciar Sesión" *ngIf="userUID == ''" (click)="navigateToLogin()"><ion-icon name="log-in"></ion-icon></ion-button>
     </ion-buttons>

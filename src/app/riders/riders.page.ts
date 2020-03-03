@@ -295,13 +295,13 @@ export class RidersPage implements OnInit {
 		this.socialSharing.share(msg, null, null, null);
 	}
 
-	twitterShare(){
+	// twitterShare(){
 		
-		let msg = this.componerMsg();
-		// console.log(msg);
+	// 	let msg = this.componerMsg();
+	// 	// console.log(msg);
 
-		this.socialSharing.shareViaTwitter(msg, null, null);
-	}
+	// 	this.socialSharing.shareViaTwitter(msg, null, null);
+	// }
 
 	whatsappShare(){
 		
