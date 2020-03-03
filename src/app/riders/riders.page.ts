@@ -271,18 +271,9 @@ export class RidersPage implements OnInit {
 	}
 
 	componerMsg(){
-		let fechaHora = new Date(this.document.data.fechaHora);
-
-		let horaInicial = new Date(fechaHora.getTime());
-		let horaFinal = new Date(fechaHora.getTime() + this.document.data.duracion*60000);
 		
-		let fechaStr =  fechaHora.toLocaleDateString("es-ES");
-		let horaIncialStr = horaInicial.toLocaleTimeString("es-ES",{hour: '2-digit', minute: '2-digit'});
-		let horaFinalStr = horaFinal.toLocaleTimeString("es-ES",{hour: '2-digit', minute: '2-digit'});
-		
-
-		var msg = 'Evento: ' + this.document.data.nombre + ' por ' + this.document.data.ponente + '\n'
-		+ 'En el día ' + fechaStr  + ' a las ' + horaIncialStr + ' hasta las ' + horaFinalStr + ' en ' + this.document.data.direccion;
+		var msg = 'Rider: ' + this.document.data.nombre + ' con su bicicleta ' + this.document.data.modeloBicicleta
+		+ 'Nacido en ' + this.document.data.ciudadNacimiento  + ' el día ' + this.document.data.fechaNacimiento + ' cuyo apodo es ' + this.document.data.nickname;
 		return msg;
 
 	}
@@ -290,23 +281,20 @@ export class RidersPage implements OnInit {
 	regularShare(){
 		
 		let msg = this.componerMsg();
-		// console.log(msg);
 
 		this.socialSharing.share(msg, null, null, null);
 	}
 
-	// twitterShare(){
+	twitterShare(){
 		
-	// 	let msg = this.componerMsg();
-	// 	// console.log(msg);
+		let msg = this.componerMsg();
 
-	// 	this.socialSharing.shareViaTwitter(msg, null, null);
-	// }
+		this.socialSharing.shareViaTwitter(msg, null, null);
+	}
 
 	whatsappShare(){
 		
 		let msg = this.componerMsg();
-		// console.log(msg);
 
 		this.socialSharing.shareViaWhatsApp(msg, null, null);
 	}

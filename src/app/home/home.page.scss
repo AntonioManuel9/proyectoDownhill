@@ -24,8 +24,11 @@
 }
 
 @media (orientation: portrait) {
-    .button-footer {
+    .textoFooter {
         font-size: 0;
-        display: block;
+        --ion-background-color: #cfd8dc;
+    }
+    .footer {
+        --ion-background-color: #cfd8dc;
     }
 }

@@ -10,6 +10,10 @@
     margin: auto;
 }
 
+#img {
+    border-spacing: 30px 5px;
+}
+
 @media (orientation: landscape) {
     .footer {
         justify-content: center;
@@ -18,7 +22,11 @@
 }
 
 @media (orientation: portrait) {
-    .button-footer {
+    .textoFooter {
         font-size: 0;
+        --ion-background-color: #cfd8dc;
+    }
+    .footer {
+        --ion-background-color: #cfd8dc;
     }
 }
